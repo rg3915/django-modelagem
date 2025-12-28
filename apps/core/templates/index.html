@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard - Início{% endblock %}
+
+{% block content %}
+<h1>Dashboard</h1>
+
+<div class="dashboard-grid">
+    <a href="#" style="text-decoration: none; color: inherit;">
+        <article class="card">
+            <h2>{{ total_clientes }}</h2>
+            <p>Clientes</p>
+        </article>
+    </a>
+
+    <a href="#" style="text-decoration: none; color: inherit;">
+        <article class="card">
+            <h2>{{ total_produtos }}</h2>
+            <p>Produtos</p>
+        </article>
+    </a>
+
+    <a href="#" style="text-decoration: none; color: inherit;">
+        <article class="card">
+            <h2>{{ total_pedidos }}</h2>
+            <p>Pedidos</p>
+        </article>
+    </a>
+</div>
+{% endblock %}
