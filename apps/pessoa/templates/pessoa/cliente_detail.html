@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ cliente.nome }} - Detalhes{% endblock %}
+
+{% block content %}
+<article>
+    <header>
+        <h1>{{ cliente.nome }}</h1>
+        <p>
+            <a href="{% url 'pessoa:cliente_list' %}" role="button" class="outline">Voltar</a>
+        </p>
+    </header>
+
+    <table>
+        <tbody>
+            <tr>
+                <th scope="row">E-mail</th>
+                <td>{{ cliente.email }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Telefone</th>
+                <td>{{ cliente.telefone|default:"-" }}</td>
+            </tr>
+            <tr>
+                <th scope="row">UUID</th>
+                <td><code>{{ cliente.uuid }}</code></td>
+            </tr>
+            <tr>
+                <th scope="row">Status</th>
+                <td>
+                    {% if cliente.ativo %}
+                        <span style="color: var(--pico-primary);">Ativo</span>
+                    {% else %}
+                        <span style="color: var(--pico-del-color);">Inativo</span>
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">Criado em</th>
+                <td>{{ cliente.criado_em|date:"d/m/Y H:i" }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Modificado em</th>
+                <td>{{ cliente.modificado_em|date:"d/m/Y H:i" }}</td>
+            </tr>
+        </tbody>
+    </table>
+</article>
+{% endblock %}

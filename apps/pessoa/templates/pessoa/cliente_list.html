@@ -11,18 +11,24 @@
             <th>Nome</th>
             <th>E-mail</th>
             <th>Telefone</th>
+            <th>Ações</th>
         </tr>
     </thead>
     <tbody>
-        {% for cliente in clientes %}
+        {% for cliente in object_list %}
         <tr>
-            <td>{{ cliente.nome }}</td>
+            <td>
+                <a href="{% url 'pessoa:cliente_detail' cliente.pk %}">{{ cliente.nome }}</a>
+            </td>
             <td>{{ cliente.email }}</td>
             <td>{{ cliente.telefone|default:"-" }}</td>
+            <td>
+                
+            </td>
         </tr>
         {% empty %}
         <tr>
-            <td colspan="3" style="text-align: center;">Nenhum cliente cadastrado.</td>
+            <td colspan="4" style="text-align: center;">Nenhum cliente cadastrado.</td>
         </tr>
         {% endfor %}
     </tbody>
