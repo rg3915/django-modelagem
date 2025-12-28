@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}Produtos{% endblock %}
+
+{% block content %}
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+    <h1 style="margin: 0;">Produtos</h1>
+    <a href="#" role="button">Novo Produto</a>
+</div>
+
+<table role="grid">
+    <thead>
+        <tr>
+            <th>SKU</th>
+            <th>Título</th>
+            <th>Preço</th>
+            <th>Categoria</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for produto in object_list %}
+        <tr>
+            <td>{{ produto.sku }}</td>
+            <td>
+                <a href="#">{{ produto.titulo }}</a>
+            </td>
+            <td>R$ {{ produto.preco }}</td>
+            <td>{{ produto.categoria }}</td>
+            <td>
+                <a href="#" role="button" class="outline" style="margin: 0;">Editar</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="5" style="text-align: center;">Nenhum produto cadastrado.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% include 'includes/pagination.html' %}
+{% endblock %}
