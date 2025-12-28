@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 
-{% block title %}Novo Cliente{% endblock %}
+{% block title %}{% if object %}Editar Cliente{% else %}Novo Cliente{% endif %}{% endblock %}
 
 {% block content %}
 <article>
     <header>
-        <h1>Novo Cliente</h1>
+        <h1>{% if object %}Editar Cliente{% else %}Novo Cliente{% endif %}</h1>
     </header>
 
     <form method="post">

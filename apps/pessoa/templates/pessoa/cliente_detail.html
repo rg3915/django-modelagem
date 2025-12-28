@@ -6,9 +6,10 @@
 <article>
     <header>
         <h1>{{ cliente.nome }}</h1>
-        <p>
+        <div style="display: flex; gap: 1rem;">
             <a href="{% url 'pessoa:cliente_list' %}" role="button" class="outline">Voltar</a>
-        </p>
+            <a href="{% url 'pessoa:cliente_update' cliente.pk %}" role="button">Editar</a>
+        </div>
     </header>
 
     <table>

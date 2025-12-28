@@ -26,7 +26,7 @@
             <td>{{ cliente.email }}</td>
             <td>{{ cliente.telefone|default:"-" }}</td>
             <td>
-                
+                <a href="{% url 'pessoa:cliente_update' cliente.pk %}" role="button" class="outline" style="margin: 0;">Editar</a>
             </td>
         </tr>
         {% empty %}
