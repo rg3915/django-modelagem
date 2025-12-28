@@ -113,5 +113,26 @@ function cancelarExclusao() {
 
 // Adicionar um item inicial ao carregar a página
 document.addEventListener('DOMContentLoaded', function() {
-    adicionarItem();
+    // Se existirem itens (modo de edição), carrega-os
+    if (window.itensExistentes && window.itensExistentes.length > 0) {
+        window.itensExistentes.forEach(function(item) {
+            adicionarItem();
+            const itemId = contadorItens - 1;
+
+            // Preenche os campos do item
+            const selectProduto = document.querySelector(`select[name="itens-${itemId}-produto"]`);
+            const inputQuantidade = document.querySelector(`input[name="itens-${itemId}-quantidade"]`);
+            const inputPreco = document.querySelector(`input[name="itens-${itemId}-preco"]`);
+
+            if (selectProduto && inputQuantidade && inputPreco) {
+                selectProduto.value = item.produto_id;
+                inputQuantidade.value = item.quantidade;
+                inputPreco.value = item.preco.toFixed(2);
+                calcularSubtotal(itemId);
+            }
+        });
+    } else {
+        // Modo de criação: adiciona um item vazio
+        adicionarItem();
+    }
 });

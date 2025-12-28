@@ -28,7 +28,7 @@
             <td>{{ pedido.get_status_display }}</td>
             <td>{{ pedido.data|date:"d/m/Y"|default:"-" }}</td>
             <td>
-                <a href="#" role="button" class="outline" style="margin: 0;">Editar</a>
+                <a href="{% url 'pedido:pedido_update' pedido.pk %}" role="button" class="outline" style="margin: 0;">Editar</a>
             </td>
         </tr>
         {% empty %}

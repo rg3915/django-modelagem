@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Novo Pedido{% endblock %}
+{% block title %}{% if object %}Editar Pedido{% else %}Novo Pedido{% endif %}{% endblock %}
 
 {% block content %}
 <article>
     <header>
-        <h1>Novo Pedido</h1>
+        <h1>{% if object %}Editar Pedido #{{ object.id }}{% else %}Novo Pedido{% endif %}</h1>
     </header>
 
     <form method="post" id="pedidoForm">
@@ -92,6 +92,21 @@ window.produtos = {
     }{% if not forloop.last %},{% endif %}
     {% endfor %}
 };
+
+// Dados dos itens existentes (para modo de edição)
+{% if object %}
+window.itensExistentes = [
+    {% for item in object.itens.all %}
+    {
+        produto_id: "{{ item.produto.pk }}",
+        quantidade: {{ item.quantidade }},
+        preco: parseFloat("{{ item.preco }}")
+    }{% if not forloop.last %},{% endif %}
+    {% endfor %}
+];
+{% else %}
+window.itensExistentes = [];
+{% endif %}
 </script>
 <script src="{% static 'js/pedido.js' %}"></script>
 {% endblock %}

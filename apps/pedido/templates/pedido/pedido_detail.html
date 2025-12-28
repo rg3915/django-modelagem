@@ -7,6 +7,7 @@
     <header>
         <h1>Pedido #{{ pedido.id }}</h1>
         <div style="display: flex; gap: 1rem;">
+            <a href="{% url 'pedido:pedido_update' pedido.pk %}" role="button">Editar</a>
             <a href="{% url 'pedido:pedido_list' %}" role="button" class="outline">Voltar</a>
         </div>
     </header>
