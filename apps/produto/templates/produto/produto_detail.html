@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ produto.titulo }} - Detalhes{% endblock %}
+
+{% block content %}
+<article>
+    <header>
+        <h1>{{ produto.titulo }}</h1>
+        <div style="display: flex; gap: 1rem;">
+            <a href="{% url 'produto:produto_list' %}" role="button" class="outline">Voltar</a>
+        </div>
+    </header>
+
+    <table>
+        <tbody>
+            <tr>
+                <th scope="row">SKU</th>
+                <td><code>{{ produto.sku }}</code></td>
+            </tr>
+            <tr>
+                <th scope="row">Preço</th>
+                <td>R$ {{ produto.preco }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Categoria</th>
+                <td>{{ produto.categoria }}</td>
+            </tr>
+            <tr>
+                <th scope="row">UUID</th>
+                <td><code>{{ produto.uuid }}</code></td>
+            </tr>
+            <tr>
+                <th scope="row">Status</th>
+                <td>
+                    {% if produto.ativo %}
+                        <span style="color: var(--pico-primary);">Ativo</span>
+                    {% else %}
+                        <span style="color: var(--pico-del-color);">Inativo</span>
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">Criado em</th>
+                <td>{{ produto.criado_em|date:"d/m/Y H:i" }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Modificado em</th>
+                <td>{{ produto.modificado_em|date:"d/m/Y H:i" }}</td>
+            </tr>
+        </tbody>
+    </table>
+</article>
+{% endblock %}

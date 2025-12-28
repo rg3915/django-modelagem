@@ -36,4 +36,4 @@ class Produto(BaseModel):
         return self.titulo
 
     def get_absolute_url(self):
-        return reverse('produto:produto_detail', kwargs={'pk': self.pk})
+        return reverse('produto:produto_detail', kwargs={'uuid': self.uuid})

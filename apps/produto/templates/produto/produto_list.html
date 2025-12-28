@@ -23,7 +23,7 @@
         <tr>
             <td>{{ produto.sku }}</td>
             <td>
-                <a href="#">{{ produto.titulo }}</a>
+                <a href="{% url 'produto:produto_detail' produto.uuid %}">{{ produto.titulo }}</a>
             </td>
             <td>R$ {{ produto.preco }}</td>
             <td>{{ produto.categoria }}</td>
