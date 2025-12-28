@@ -1,5 +1,6 @@
-from django.views.generic import DetailView, ListView
+from django.views.generic import CreateView, DetailView, ListView
 
+from apps.pessoa.forms import ClienteForm
 from apps.pessoa.models import Cliente
 
 
@@ -14,3 +15,9 @@ class ClienteListView(ListView):
 class ClienteDetailView(DetailView):
     model = Cliente
     context_object_name = 'cliente'
+
+
+class ClienteCreateView(CreateView):
+    model = Cliente
+    form_class = ClienteForm
+    template_name = 'pessoa/cliente_form.html'

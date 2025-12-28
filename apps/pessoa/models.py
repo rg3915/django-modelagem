@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 from apps.core.models import BaseModel
 
@@ -15,3 +16,6 @@ class Cliente(BaseModel):
 
     def __str__(self):
         return self.nome
+
+    def get_absolute_url(self):
+        return reverse('pessoa:cliente_detail', kwargs={'pk': self.pk})

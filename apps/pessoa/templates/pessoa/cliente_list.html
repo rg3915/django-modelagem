@@ -3,7 +3,10 @@
 {% block title %}Clientes{% endblock %}
 
 {% block content %}
-<h1>Clientes</h1>
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+    <h1 style="margin: 0;">Clientes</h1>
+    <a href="{% url 'pessoa:cliente_create' %}" role="button">Novo Cliente</a>
+</div>
 
 <table role="grid">
     <thead>

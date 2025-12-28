@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}Novo Cliente{% endblock %}
+
+{% block content %}
+<article>
+    <header>
+        <h1>Novo Cliente</h1>
+    </header>
+
+    <form method="post">
+        {% csrf_token %}
+
+        <label for="id_nome">
+            Nome
+            {{ form.nome }}
+            {% if form.nome.errors %}
+                <small style="color: var(--pico-del-color);">{{ form.nome.errors.0 }}</small>
+            {% endif %}
+        </label>
+
+        <label for="id_email">
+            E-mail
+            {{ form.email }}
+            {% if form.email.errors %}
+                <small style="color: var(--pico-del-color);">{{ form.email.errors.0 }}</small>
+            {% endif %}
+        </label>
+
+        <label for="id_telefone">
+            Telefone (opcional)
+            {{ form.telefone }}
+            {% if form.telefone.errors %}
+                <small style="color: var(--pico-del-color);">{{ form.telefone.errors.0 }}</small>
+            {% endif %}
+        </label>
+
+        <div style="display: flex; gap: 1rem;">
+            <button type="submit">Salvar</button>
+            <a href="{% url 'pessoa:cliente_list' %}" role="button" class="outline">Cancelar</a>
+        </div>
+    </form>
+</article>
+{% endblock %}
