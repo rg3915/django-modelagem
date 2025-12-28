@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}Pedidos{% endblock %}
+
+{% block content %}
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+    <h1 style="margin: 0;">Pedidos</h1>
+    <a href="#" role="button">Novo Pedido</a>
+</div>
+
+<table role="grid">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Cliente</th>
+            <th>Status</th>
+            <th>Data</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for pedido in object_list %}
+        <tr>
+            <td>{{ pedido.id }}</td>
+            <td>
+                <a href="#">{{ pedido.cliente.nome }}</a>
+            </td>
+            <td>{{ pedido.get_status_display }}</td>
+            <td>{{ pedido.data|date:"d/m/Y"|default:"-" }}</td>
+            <td>
+                <a href="#" role="button" class="outline" style="margin: 0;">Editar</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="5" style="text-align: center;">Nenhum pedido cadastrado.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% include 'includes/pagination.html' %}
+{% endblock %}
