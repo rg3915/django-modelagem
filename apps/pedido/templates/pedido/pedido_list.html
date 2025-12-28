@@ -21,10 +21,10 @@
     <tbody>
         {% for pedido in object_list %}
         <tr>
-            <td>{{ pedido.id }}</td>
             <td>
-                <a href="#">{{ pedido.cliente.nome }}</a>
+                <a href="{% url 'pedido:pedido_detail' pedido.pk %}">{{ pedido.id }}</a>
             </td>
+            <td>{{ pedido.cliente.nome }}</td>
             <td>{{ pedido.get_status_display }}</td>
             <td>{{ pedido.data|date:"d/m/Y"|default:"-" }}</td>
             <td>
