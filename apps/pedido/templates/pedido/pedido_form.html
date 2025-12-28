@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Novo Pedido{% endblock %}
+
+{% block content %}
+<article>
+    <header>
+        <h1>Novo Pedido</h1>
+    </header>
+
+    <form method="post" id="pedidoForm">
+        {% csrf_token %}
+
+        <label for="id_cliente">
+            Cliente
+            {{ form.cliente }}
+            {% if form.cliente.errors %}
+                <small style="color: var(--pico-del-color);">{{ form.cliente.errors.0 }}</small>
+            {% endif %}
+        </label>
+
+        <label for="id_status">
+            Status
+            {{ form.status }}
+            {% if form.status.errors %}
+                <small style="color: var(--pico-del-color);">{{ form.status.errors.0 }}</small>
+            {% endif %}
+        </label>
+
+        <label for="id_data">
+            Data
+            {{ form.data }}
+            {% if form.data.errors %}
+                <small style="color: var(--pico-del-color);">{{ form.data.errors.0 }}</small>
+            {% endif %}
+        </label>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+            <h2 style="margin: 0;">Itens do Pedido</h2>
+            <button type="button" onclick="adicionarItem()">Adicionar Item</button>
+        </div>
+
+        <table role="grid" id="itensTable">
+            <thead>
+                <tr>
+                    <th>Produto</th>
+                    <th>Quantidade</th>
+                    <th>Preço</th>
+                    <th>Subtotal</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody id="itensBody">
+                <!-- Itens serão adicionados dinamicamente aqui -->
+            </tbody>
+        </table>
+
+        <div style="text-align: right; margin-top: 1rem;">
+            <strong>Total Geral: <span id="totalGeral">R$ 0,00</span></strong>
+        </div>
+
+        <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+            <button type="submit">Salvar</button>
+            <button type="button" onclick="adicionarItem()" class="outline">Adicionar Item</button>
+            <a href="{% url 'pedido:pedido_list' %}" role="button" class="outline">Cancelar</a>
+        </div>
+    </form>
+</article>
+
+<!-- Modal de confirmação de exclusão -->
+<dialog id="confirmDialog">
+    <article>
+        <header>
+            <h2>Confirmar Exclusão</h2>
+        </header>
+        <p>Tem certeza que deseja remover este item?</p>
+        <footer>
+            <button onclick="cancelarExclusao()" class="outline">Cancelar</button>
+            <button onclick="confirmarExclusao()">Confirmar</button>
+        </footer>
+    </article>
+</dialog>
+
+<script>
+// Dados dos produtos vindos do backend
+window.produtos = {
+    {% for produto in produtos %}
+    "{{ produto.pk }}": {
+        titulo: "{{ produto.titulo|escapejs }}",
+        preco: parseFloat("{{ produto.preco }}")
+    }{% if not forloop.last %},{% endif %}
+    {% endfor %}
+};
+</script>
+<script src="{% static 'js/pedido.js' %}"></script>
+{% endblock %}

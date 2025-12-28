@@ -39,6 +39,11 @@ class Pedido(BaseModel):
     def get_absolute_url(self):
         return reverse('pedido:pedido_detail', kwargs={'pk': self.pk})
 
+    def get_total(self):
+        """Calcula o total do pedido somando todos os itens"""
+        total = sum(item.get_subtotal() for item in self.itens.all())
+        return total
+
 
 class PedidoItem(models.Model):
     pedido = models.ForeignKey(
@@ -65,3 +70,7 @@ class PedidoItem(models.Model):
 
     def __str__(self):
         return f'{self.produto.titulo} - {self.quantidade}x'
+
+    def get_subtotal(self):
+        """Calcula o subtotal do item (quantidade * preço)"""
+        return self.quantidade * self.preco

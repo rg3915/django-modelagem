@@ -66,7 +66,7 @@
                 <td>{{ item.produto.titulo }}</td>
                 <td>{{ item.quantidade }}</td>
                 <td>R$ {{ item.preco }}</td>
-                <td>R$ {{ item.preco|floatformat:2 }}</td>
+                <td>R$ {{ item.get_subtotal|floatformat:2 }}</td>
             </tr>
             {% empty %}
             <tr>
@@ -75,5 +75,11 @@
             {% endfor %}
         </tbody>
     </table>
+
+    {% if pedido.itens.all %}
+    <div style="text-align: right; margin-top: 1rem;">
+        <strong>Total Geral: R$ {{ pedido.get_total|floatformat:2 }}</strong>
+    </div>
+    {% endif %}
 </article>
 {% endblock %}
