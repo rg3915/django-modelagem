@@ -28,7 +28,7 @@
             <td>R$ {{ produto.preco }}</td>
             <td>{{ produto.categoria }}</td>
             <td>
-                <a href="#" role="button" class="outline" style="margin: 0;">Editar</a>
+                <a href="{% url 'produto:produto_update' produto.uuid %}" role="button" class="outline" style="margin: 0;">Editar</a>
             </td>
         </tr>
         {% empty %}

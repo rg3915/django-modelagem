@@ -1,4 +1,4 @@
-from django.views.generic import CreateView, DetailView, ListView
+from django.views.generic import CreateView, DetailView, ListView, UpdateView
 
 from apps.produto.forms import ProdutoForm
 from apps.produto.models import Produto
@@ -19,3 +19,10 @@ class ProdutoDetailView(DetailView):
 class ProdutoCreateView(CreateView):
     model = Produto
     form_class = ProdutoForm
+
+
+class ProdutoUpdateView(UpdateView):
+    model = Produto
+    form_class = ProdutoForm
+    slug_field = 'uuid'
+    slug_url_kwarg = 'uuid'

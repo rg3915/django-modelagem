@@ -8,6 +8,7 @@
         <h1>{{ produto.titulo }}</h1>
         <div style="display: flex; gap: 1rem;">
             <a href="{% url 'produto:produto_list' %}" role="button" class="outline">Voltar</a>
+            <a href="{% url 'produto:produto_update' produto.uuid %}" role="button">Editar</a>
         </div>
     </header>
 
