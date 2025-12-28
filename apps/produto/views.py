@@ -1,5 +1,6 @@
-from django.views.generic import DetailView, ListView
+from django.views.generic import CreateView, DetailView, ListView
 
+from apps.produto.forms import ProdutoForm
 from apps.produto.models import Produto
 
 
@@ -10,7 +11,11 @@ class ProdutoListView(ListView):
 
 class ProdutoDetailView(DetailView):
     model = Produto
-    template_name = 'produto/produto_detail.html'
     context_object_name = 'produto'
     slug_field = 'uuid'
     slug_url_kwarg = 'uuid'
+
+
+class ProdutoCreateView(CreateView):
+    model = Produto
+    form_class = ProdutoForm

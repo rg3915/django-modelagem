@@ -5,7 +5,7 @@
 {% block content %}
 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
     <h1 style="margin: 0;">Produtos</h1>
-    <a href="#" role="button">Novo Produto</a>
+    <a href="{% url 'produto:produto_create' %}" role="button">Novo Produto</a>
 </div>
 
 <table role="grid">

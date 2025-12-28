@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}{% if object %}Editar Produto{% else %}Novo Produto{% endif %}{% endblock %}
+
+{% block content %}
+<article>
+    <header>
+        <h1>{% if object %}Editar Produto{% else %}Novo Produto{% endif %}</h1>
+    </header>
+
+    <form method="post">
+        {% csrf_token %}
+
+        <label for="id_sku">
+            SKU
+            {{ form.sku }}
+            {% if form.sku.errors %}
+                <small style="color: var(--pico-del-color);">{{ form.sku.errors.0 }}</small>
+            {% endif %}
+        </label>
+
+        <label for="id_titulo">
+            Título
+            {{ form.titulo }}
+            {% if form.titulo.errors %}
+                <small style="color: var(--pico-del-color);">{{ form.titulo.errors.0 }}</small>
+            {% endif %}
+        </label>
+
+        <label for="id_preco">
+            Preço
+            {{ form.preco }}
+            {% if form.preco.errors %}
+                <small style="color: var(--pico-del-color);">{{ form.preco.errors.0 }}</small>
+            {% endif %}
+        </label>
+
+        <label for="id_categoria">
+            Categoria
+            {{ form.categoria }}
+            {% if form.categoria.errors %}
+                <small style="color: var(--pico-del-color);">{{ form.categoria.errors.0 }}</small>
+            {% endif %}
+        </label>
+
+        <div style="display: flex; gap: 1rem;">
+            <button type="submit">Salvar</button>
+            <a href="{% url 'produto:produto_list' %}" role="button" class="outline">Cancelar</a>
+        </div>
+    </form>
+</article>
+{% endblock %}
