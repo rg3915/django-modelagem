@@ -1,0 +1,29 @@
+{% if is_paginated %}
+<nav aria-label="Paginação">
+    <ul style="display: flex; justify-content: center; gap: 0.5rem; list-style: none; padding: 0;">
+        {% if page_obj.has_previous %}
+            <li>
+                <a href="?page=1" role="button" class="outline">Primeira</a>
+            </li>
+            <li>
+                <a href="?page={{ page_obj.previous_page_number }}" role="button" class="outline">Anterior</a>
+            </li>
+        {% endif %}
+
+        <li>
+            <span style="padding: 0.75rem 1rem;">
+                Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}
+            </span>
+        </li>
+
+        {% if page_obj.has_next %}
+            <li>
+                <a href="?page={{ page_obj.next_page_number }}" role="button" class="outline">Próxima</a>
+            </li>
+            <li>
+                <a href="?page={{ page_obj.paginator.num_pages }}" role="button" class="outline">Última</a>
+            </li>
+        {% endif %}
+    </ul>
+</nav>
+{% endif %}
